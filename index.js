@@ -1,12 +1,26 @@
 // index.js
-const { fetchMyIP } = require('./iss');
-const { fetchCoordsByIP } = require('.iss');
+const { fetchMyIP, fetchCoordsByIP } = require('./iss');
 
-// fetchMyIP((error, ip) => {
-//   if (error) {
-//     console.log("It didn't work!" , error);
-//     return;
-//   }
+let IPfreely = "";
 
-//   console.log('It worked! Returned IP:' , ip);
-// });
+fetchMyIP((error, ip) => {
+  if (error) {
+    // console.log("It didn't work!" , error);
+    return;
+  }
+
+  // console.log('It worked! Returned IP:' , ip);
+  IPfreely += ip;
+  return ip;
+});
+
+
+fetchCoordsByIP(IPfreely, (error, data) => {
+  if (error) {
+    console.log(error);
+    return;
+  }
+  
+  console.log(data);
+
+});
